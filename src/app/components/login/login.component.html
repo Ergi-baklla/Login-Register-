@@ -1,0 +1,50 @@
+<div class="flex justify-content-center align-items-center min-h-screen">
+  <p-card header="Login" [style]="{ width: '400px' }">
+    <form #loginForm="ngForm" (ngSubmit)="onLogin()">
+      <div class="field">
+        <label for="email">Email</label>
+        <input
+          type="text"
+          pInputText
+          class="w-full"
+          id="email"
+          name="email"
+          required
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+          [(ngModel)]="login.email"
+        />
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <p-password
+          class="w-full"
+          id="password"
+          name="password"
+          required
+          [feedback]="false"
+          [toggleMask]="true"
+          [(ngModel)]="login.password"
+        ></p-password>
+      </div>
+      <div class="field-checkbox mt-3">
+        <input
+          type="checkbox"
+          id="adminCheckbox"
+          (change)="onCheckboxChange($event)"
+          class="mr-2"
+        />
+        <label for="adminCheckbox">I am the admin</label>
+      </div>
+      
+      <p-button
+        label="SIGN IN"
+        styleClass="w-full"
+        [disabled]="loginForm.invalid"
+        type="submit"
+      ></p-button>
+      <div class="mt-2">
+        Not a member? <a routerLink="/register">Register</a>
+      </div>
+    </form>
+  </p-card>
+</div>
